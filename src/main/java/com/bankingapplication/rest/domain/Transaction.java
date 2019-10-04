@@ -29,11 +29,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Transaction extends BaseMaster implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(name="ID",updatable = false)
-    private String id;
-
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
     @GenericGenerator(
         name = "transaction_seq", 
@@ -42,7 +37,7 @@ public class Transaction extends BaseMaster implements Serializable {
             @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
             @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "T_"),
             @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
-    private String transactionCode;
+    private String id;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "accountNumber", nullable = false)
@@ -87,20 +82,6 @@ public class Transaction extends BaseMaster implements Serializable {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-
-    /**
-	 * @return the transactionCode
-	 */
-	public String getTransactionCode() {
-		return transactionCode;
-	}
-
-	/**
-	 * @param transactionCode the transactionCode to set
-	 */
-	public void setTransactionCode(String transactionCode) {
-		this.transactionCode = transactionCode;
-	}
 
 	@Override
     public boolean equals(Object o) {

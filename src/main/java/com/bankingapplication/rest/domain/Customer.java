@@ -16,107 +16,88 @@ import org.hibernate.annotations.Parameter;
 import com.bankingapplication.rest.domain.base.BaseMaster;
 import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 
-@Table(name="CUSTOMER")
+@Table(name = "CUSTOMER")
 @Entity
-public class Customer extends BaseMaster implements Serializable{
-	
-	private static final long serialVersionUID = -6759774343110776659L;
+public class Customer extends BaseMaster implements Serializable {
 
-	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name="ID",updatable = false)
-	private String id;
-	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
-	@GenericGenerator(
-	        name = "customer_seq", 
-	        strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator", 
-	        parameters = {
-	            @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
-	            @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "C_"),
-	            @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
-	private String customerCode;
-	
-	@Column(name="NAME")
-	private String customerName;
-	
-	@Column(name="DATE_OF_BIRTH" ,nullable=true)
-	private Long dateOfBirth;
-	
-	@Column(name="PHONE_NUMBER")
-	private String phoneNumber;
+    private static final long serialVersionUID = -6759774343110776659L;
 
-	@Column(name="IDENTIFICATION_NUMBER", unique = true, nullable = false)
-	private String identificationNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+    @GenericGenerator(
+            name = "customer_seq",
+            strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator",
+            parameters = {
+                    @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
+                    @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "C_"),
+                    @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
+    private String id;
 
-	public String getCustomerName() {
-		return customerName;
-	}
+    @Column(name = "NAME")
+    private String customerName;
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
+    @Column(name = "DATE_OF_BIRTH", nullable = true)
+    private Long dateOfBirth;
 
-	public Long getDateOfBirth() {
-		return dateOfBirth;
-	}
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
-	public void setDateOfBirth(Long dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    @Column(name = "IDENTIFICATION_NUMBER", unique = true, nullable = false)
+    private String identificationNumber;
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getCustomerName() {
+        return customerName;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public Long getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setDateOfBirth(Long dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public String getIdentificationNumber() {
-		return identificationNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setIdentificationNumber(String identificationNumber) {
-		this.identificationNumber = identificationNumber;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	/**
-	 * @return the customerCode
-	 */
-	public String getCustomerCode() {
-		return customerCode;
-	}
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * @param customerCode the customerCode to set
-	 */
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Customer customer = (Customer) o;
-		return Objects.equals(id, customer.id) &&
-				Objects.equals(customerName, customer.customerName) &&
-				Objects.equals(dateOfBirth, customer.dateOfBirth) &&
-				Objects.equals(phoneNumber, customer.phoneNumber);
-	}
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, customerName, dateOfBirth, phoneNumber);
-	}
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id) &&
+                Objects.equals(customerName, customer.customerName) &&
+                Objects.equals(dateOfBirth, customer.dateOfBirth) &&
+                Objects.equals(phoneNumber, customer.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customerName, dateOfBirth, phoneNumber);
+    }
 }

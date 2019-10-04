@@ -1,6 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 import com.bankingapplication.rest.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
@@ -19,9 +20,14 @@ public class Account extends BaseMaster implements Serializable {
 	private static final long serialVersionUID = -6380749575516426900L;
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name="ACCOUNT_NUMBER",updatable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
+	@GenericGenerator(
+			name = "account_seq",
+			strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator",
+			parameters = {
+					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
+					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "A_"),
+					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
 	private String accountNumber;
 
 	@Column(name="ACCOUNT_TYPE")
