@@ -29,6 +29,9 @@ public class Customer extends BaseMaster implements Serializable{
 	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 
+	@Column(name="IDENTIFICATION_NUMBER", unique = true, nullable = false)
+	private String identificationNumber;
+
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -59,6 +62,14 @@ public class Customer extends BaseMaster implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getIdentificationNumber() {
+		return identificationNumber;
+	}
+
+	public void setIdentificationNumber(String identificationNumber) {
+		this.identificationNumber = identificationNumber;
 	}
 
 	@Override

@@ -24,9 +24,6 @@ public class Account extends BaseMaster implements Serializable {
 	@Column(name="ACCOUNT_NUMBER",updatable = false)
 	private String accountNumber;
 
-	@Column(name="ACCOUNT_NAME")
-	private String accountName;
-
 	@Column(name="ACCOUNT_TYPE")
 	private AccountType accountType;
 
@@ -56,14 +53,6 @@ public class Account extends BaseMaster implements Serializable {
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public String getAccountName() {
-		return accountName;
-	}
-
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
 	}
 
 	public Double getBalance() {
@@ -120,7 +109,6 @@ public class Account extends BaseMaster implements Serializable {
 		if (o == null || getClass() != o.getClass()) return false;
 		Account account = (Account) o;
 		return accountNumber.equals(account.accountNumber) &&
-				accountName.equals(account.accountName) &&
 				balance.equals(account.balance) &&
 				openingDate.equals(account.openingDate) &&
 				closingDate.equals(account.closingDate) &&
