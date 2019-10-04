@@ -19,7 +19,7 @@ public class Transaction extends BaseMaster implements Serializable {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name="TRANSACTION_ID",updatable = false)
-    private Integer id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "accountNumber", nullable = false)
