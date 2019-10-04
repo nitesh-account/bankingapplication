@@ -1,6 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.enums.TransactionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;

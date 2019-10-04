@@ -1,4 +1,4 @@
-package com.bankingapplication.rest.domain;
+package com.bankingapplication.rest.enums;
 
 public enum TransactionType {
 	DEPOSIT("deposit"),WITHDRAW("withdraw");

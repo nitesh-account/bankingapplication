@@ -1,6 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -10,7 +11,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Table(name="ACCOUNT")

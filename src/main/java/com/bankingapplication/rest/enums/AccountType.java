@@ -1,4 +1,4 @@
-package com.bankingapplication.rest.domain;
+package com.bankingapplication.rest.enums;
 /**
  * Enumeration of types of accounts
  *  
