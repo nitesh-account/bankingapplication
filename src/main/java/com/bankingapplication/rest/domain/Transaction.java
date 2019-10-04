@@ -1,15 +1,27 @@
 package com.bankingapplication.rest.domain;
 
-import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.enums.TransactionType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Parameter;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import com.bankingapplication.rest.enums.TransactionType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Table(name="TRANSACTION")
@@ -19,9 +31,19 @@ public class Transaction extends BaseMaster implements Serializable {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(name="TRANSACTION_ID",updatable = false)
+    @Column(name="ID",updatable = false)
     private String id;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+    @GenericGenerator(
+        name = "transaction_seq", 
+        strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator", 
+        parameters = {
+            @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
+            @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "T_"),
+            @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+    private String transactionCode;
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "accountNumber", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -66,7 +88,21 @@ public class Transaction extends BaseMaster implements Serializable {
         this.amount = amount;
     }
 
-    @Override
+    /**
+	 * @return the transactionCode
+	 */
+	public String getTransactionCode() {
+		return transactionCode;
+	}
+
+	/**
+	 * @param transactionCode the transactionCode to set
+	 */
+	public void setTransactionCode(String transactionCode) {
+		this.transactionCode = transactionCode;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

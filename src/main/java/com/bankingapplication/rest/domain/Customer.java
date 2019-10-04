@@ -1,12 +1,20 @@
 package com.bankingapplication.rest.domain;
 
-import com.bankingapplication.rest.domain.base.BaseMaster;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 
 @Table(name="CUSTOMER")
 @Entity
@@ -19,6 +27,16 @@ public class Customer extends BaseMaster implements Serializable{
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	@Column(name="ID",updatable = false)
 	private String id;
+	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+	@GenericGenerator(
+	        name = "customer_seq", 
+	        strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator", 
+	        parameters = {
+	            @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
+	            @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "C_"),
+	            @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	private String customerCode;
 	
 	@Column(name="NAME")
 	private String customerName;
@@ -70,6 +88,20 @@ public class Customer extends BaseMaster implements Serializable{
 
 	public void setIdentificationNumber(String identificationNumber) {
 		this.identificationNumber = identificationNumber;
+	}
+
+	/**
+	 * @return the customerCode
+	 */
+	public String getCustomerCode() {
+		return customerCode;
+	}
+
+	/**
+	 * @param customerCode the customerCode to set
+	 */
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
 	}
 
 	@Override
