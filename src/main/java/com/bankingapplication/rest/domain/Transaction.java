@@ -3,15 +3,7 @@ package com.bankingapplication.rest.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -46,6 +38,7 @@ public class Transaction extends BaseMaster implements Serializable {
     private Account account;
 
     @Column(name="TRANSACTION_TYPE")
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
     @Column(name="TRANSACTION_AMOUNT")

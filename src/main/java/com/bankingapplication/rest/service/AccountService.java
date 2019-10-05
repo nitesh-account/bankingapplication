@@ -2,7 +2,7 @@ package com.bankingapplication.rest.service;
 
 import com.bankingapplication.rest.domain.Account;
 import com.bankingapplication.rest.domain.Customer;
-import com.bankingapplication.rest.enums.AccountType;
+import com.bankingapplication.rest.dto.AccountSearchDTO;
 import com.bankingapplication.rest.enums.HttpHeaders;
 import com.bankingapplication.rest.exception.ResourceNotFoundException;
 import com.bankingapplication.rest.repository.AccountRepository;
@@ -99,5 +99,26 @@ public class AccountService {
 
     public Page<Account> getAll(Pageable pageable) {
         return accountRepository.findAll(pageable);
+    }
+
+    public ResponseEntity<AccountSearchDTO> getAccount(String accountNumber, Pageable pageable) {
+        AccountSearchDTO accountSearchDTO = new AccountSearchDTO();
+        Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
+        Customer customer = new Customer();
+        if(account.isPresent()){
+            Account acct = account.get();
+            String customerId = acct.getCustomer().getId();
+            customer = customerRepository.findById(customerId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Customer [customerId="+customerId+"] can't be found"));
+        }
+
+        Customer finalCustomer = customer;
+        return accountRepository.findByAccountNumber(accountNumber).map(acct ->{
+            accountSearchDTO.setCustomerId(finalCustomer.getId());
+            accountSearchDTO.setCustomerName(finalCustomer.getCustomerName());
+            accountSearchDTO.setAccountNumber(accountNumber);
+            accountSearchDTO.setAccountStatus(acct.getAccountStatus());
+            return ResponseEntity.ok(accountSearchDTO);
+        }).orElseThrow(() -> new ResourceNotFoundException("Account [accountId="+accountNumber+"] can't be found"));
     }
 }

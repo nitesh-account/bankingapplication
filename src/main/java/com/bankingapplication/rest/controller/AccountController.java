@@ -1,6 +1,7 @@
 package com.bankingapplication.rest.controller;
 
 import com.bankingapplication.rest.domain.Account;
+import com.bankingapplication.rest.dto.AccountSearchDTO;
 import com.bankingapplication.rest.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +23,11 @@ public class AccountController {
 	public Account save(@RequestBody Account account) {
 		return accountService.save(account);
 	 }
-	
-	@GetMapping(value = "/accounts/{customerId}")
-	 public Page<Account> getAccountsByCustomerId (@PathVariable String customerId, Pageable pageable){
-		return accountService.getAccountsByCustomerId(customerId,pageable);
-	 }
+
+	@GetMapping(value = "/accounts/{accountNumber}")
+	public ResponseEntity<AccountSearchDTO> getAccount (@PathVariable String accountNumber, Pageable pageable){
+		return accountService.getAccount(accountNumber,pageable);
+	}
 
 	@GetMapping(value = "/accounts")
 	public Page<Account> getAll (Pageable pageable){
