@@ -64,6 +64,19 @@ public class Account extends BaseMaster implements Serializable {
 		return balance;
 	}
 
+	public Account() {
+	}
+
+	public Account(String createdBy, AccountType accountType, String accountStatus, @Min(0) Double balance, Long openingDate, Long closingDate, Customer customer) {
+		super(createdBy);
+		this.accountType = accountType;
+		this.accountStatus = accountStatus;
+		this.balance = balance;
+		this.openingDate = openingDate;
+		this.closingDate = closingDate;
+		this.customer = customer;
+	}
+
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}

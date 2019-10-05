@@ -57,6 +57,17 @@ public class Customer extends BaseMaster implements Serializable {
         return dateOfBirth;
     }
 
+    public Customer() {
+    }
+
+    public Customer(String createdBy, String customerName, Long dateOfBirth, String phoneNumber, String identificationNumber) {
+        super(createdBy);
+        this.customerName = customerName;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.identificationNumber = identificationNumber;
+    }
+
     public void setDateOfBirth(Long dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }

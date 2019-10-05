@@ -27,6 +27,9 @@ public class BaseMaster{
     this.createdBy = createdBy;
   }
 
+  public BaseMaster() {
+  }
+
   public String getCreatedBy() {
     return createdBy;
   }
