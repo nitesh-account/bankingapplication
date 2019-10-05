@@ -3,6 +3,12 @@ package com.bankingapplication.rest.dto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * AccountSearchDTO is used to define properties for custom related data set.
+ *
+ * @author Nitesh Kumar
+ */
+
 public class AccountSearchDTO {
     private Logger logger = LoggerFactory.getLogger(AccountSearchDTO.class);
     private String customerName;

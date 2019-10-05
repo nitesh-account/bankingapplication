@@ -11,6 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * CustomerController is used to perform CRUD operations of customer
+ *
+ * @author Nitesh Kumar
+ */
 
 @RestController
 @CrossOrigin

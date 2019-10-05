@@ -17,21 +17,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * TransactionService class is used for logical implementation for transaction related operations
+ *
+ * @author Nitesh Kumar
+ */
+
 @Service
 public class TransactionService extends BaseService {
     private Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
+    /**
+     * Save transaction data and update account balance, if account number is not found than will throw {@link ResourceNotFoundException}
+     * if balance becomes negative than will throw {@link LowBalanceException}
+     *
+     * @param accountNumber a unique account id
+     * @param amount transaction amount
+     * @param transactionType {@link TransactionType} enum
+     * @return {@link TransactionDTO} object
+     */
     @Transactional
     public ResponseEntity<TransactionDTO> save(String accountNumber, Double amount, TransactionType transactionType) {
         TransactionDTO transactionDTO = new TransactionDTO();
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
         Customer customer = new Customer();
-        if (account.isPresent()) {
-            Account acct = account.get();
-            String customerId = acct.getCustomer().getId();
-            customer = customerRepository.findById(customerId)
-                    .orElseThrow(() -> new ResourceNotFoundException("Customer [customerId=" + customerId + "] can't be found"));
-        }
+        customer = getCustomer(account, customer);
 
         Customer finalCustomer = customer;
         return accountRepository.findByAccountNumber(accountNumber).map(acct -> {
@@ -57,6 +67,33 @@ public class TransactionService extends BaseService {
         }).orElseThrow(() -> new ResourceNotFoundException("Account [accountId=" + accountNumber + "] can't be found"));
     }
 
+    /**
+     * Get customer information, if customer id is not present than will throw {@link ResourceNotFoundException} exception
+     *
+     * @param account a valid {@link Account} object
+     * @param customer a valid {@link Customer} object
+     * @return {@link Customer} object
+     */
+    private Customer getCustomer(Optional<Account> account, Customer customer) {
+        if (account.isPresent()) {
+            Account acct = account.get();
+            String customerId = acct.getCustomer().getId();
+            customer = customerRepository.findById(customerId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Customer [customerId=" + customerId + "] can't be found"));
+        }
+        return customer;
+    }
+
+    /**
+     *
+     * @param savedTransaction a valid {@link Transaction} object
+     * @param accountNumber a unique account id
+     * @param transactionDTO a valid {@link TransactionDTO} object
+     * @param finalCustomer a valid {@link Customer} object
+     * @param acct a valid {@link Account} object
+     * @param balanceAfterDeposit balance amount
+     * @param amount transaction amount
+     */
     private void setTransactionDTO(Transaction savedTransaction, String accountNumber, TransactionDTO transactionDTO, Customer finalCustomer, Account acct, Double balanceAfterDeposit, Double amount) {
         transactionDTO.setTransactionId(savedTransaction.getId());
         transactionDTO.setCustomerId(finalCustomer.getId());

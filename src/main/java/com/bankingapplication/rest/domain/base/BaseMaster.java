@@ -1,13 +1,17 @@
 package com.bankingapplication.rest.domain.base;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.bankingapplication.rest.utils.DateAssistantUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.annotation.CreatedBy;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+/**
+ * BaseMaster is used to define common properties for all entities.
+ *
+ * @author Nitesh Kumar
+ */
 
 @MappedSuperclass
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

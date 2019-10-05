@@ -1,22 +1,23 @@
 package com.bankingapplication.rest.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-import javax.persistence.*;
-
+import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import com.bankingapplication.rest.enums.TransactionType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Parameter;
 
-import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
-import com.bankingapplication.rest.enums.TransactionType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
+/**
+ * Transaction entity is used to define transaction related properties.
+ *
+ * @author Nitesh Kumar
+ */
 
 @Table(name="TRANSACTION")
 @Entity

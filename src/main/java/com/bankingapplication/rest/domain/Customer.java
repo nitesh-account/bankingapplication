@@ -1,22 +1,19 @@
 package com.bankingapplication.rest.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import com.bankingapplication.rest.domain.base.BaseMaster;
+import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
+
+/**
+ * Customer entity is used to define customer related properties.
+ *
+ * @author Nitesh Kumar
+ */
 
 @Table(name = "CUSTOMER")
 @Entity

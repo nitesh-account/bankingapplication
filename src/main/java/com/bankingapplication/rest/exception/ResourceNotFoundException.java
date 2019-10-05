@@ -5,6 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * ResourceNotFoundException class is used to handle not found exception
+ *
+ * @author Nitesh Kumar
+ */
+
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException {
     private Logger logger = LoggerFactory.getLogger(ResourceNotFoundException.class);

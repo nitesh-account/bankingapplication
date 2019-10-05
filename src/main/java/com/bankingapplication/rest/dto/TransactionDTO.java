@@ -3,6 +3,12 @@ package com.bankingapplication.rest.dto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * TransactionDTO is used to define properties for custom related data set.
+ *
+ * @author Nitesh Kumar
+ */
+
 public class TransactionDTO {
     private Logger logger = LoggerFactory.getLogger(TransactionDTO.class);
 

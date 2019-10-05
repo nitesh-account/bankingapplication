@@ -3,18 +3,20 @@ package com.bankingapplication.rest.domain;
 import com.bankingapplication.rest.domain.base.BaseMaster;
 import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 import com.bankingapplication.rest.enums.AccountType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+
+/**
+ * Account entity is used to define account related properties.
+ *
+ * @author Nitesh Kumar
+ */
 
 @Table(name="ACCOUNT")
 @Entity

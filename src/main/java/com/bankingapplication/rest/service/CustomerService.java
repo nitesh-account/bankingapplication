@@ -12,10 +12,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+/**
+ * CustomerService class is used for logical implementation for customer related operations
+ *
+ * @author Nitesh Kumar
+ */
+
 @Service
 public class CustomerService extends BaseService{
     private Logger logger = LoggerFactory.getLogger(AccountService.class);
 
+    /**
+     * Save customer data in customer table
+     *
+     * @param customer a valid {@link Customer} object
+     * @return newly created {@link Customer} object
+     */
     public Customer save(Customer customer) {
         String createdBy = HttpUtils.getHeader(HttpHeaders.USER_NAME);
         if(!StringUtils.isEmpty(createdBy))
@@ -24,15 +36,33 @@ public class CustomerService extends BaseService{
         return customerRepository.save(customer);
     }
 
+    /**
+     * Get all customer data
+     *
+     * @param pageable
+     * @return {@link Page<Customer}
+     */
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
 
+    /**
+     * Find customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     *
+     * @param customerId unique customer id
+     * @return {@link Customer} object
+     */
     public Customer findByCustomerId(String customerId) {
         return customerRepository.findById(customerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer [customerId=" + customerId + "] can't be found"));
     }
 
+    /**
+     * Delete customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     *
+     * @param customerId a unique customer id
+     * @return
+     */
     public ResponseEntity<?> deleteCustomer(String customerId) {
         return customerRepository.findById(customerId).map(customer -> {
                     customerRepository.delete(customer);
@@ -41,6 +71,13 @@ public class CustomerService extends BaseService{
         ).orElseThrow(() -> new ResourceNotFoundException("Customer [customerId=" + customerId + "] can't be found"));
     }
 
+    /**
+     * Update customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     *
+     * @param customerId a unique customer id
+     * @param newCustomer a valid {@link Customer} object
+     * @return {@link Customer} object
+     */
     public ResponseEntity<Customer> updateCustomer(String customerId, Customer newCustomer) {
         return customerRepository.findById(customerId).map(customer -> {
             customer.setCustomerName(newCustomer.getCustomerName());

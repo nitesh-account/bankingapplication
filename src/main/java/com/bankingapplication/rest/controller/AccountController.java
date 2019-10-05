@@ -12,6 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * AccountController is used to perform CRUD operations of account
+ *
+ * @author Nitesh Kumar
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value = {"/api"})

@@ -9,9 +9,20 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * HttpUtils class is used for getting header information from request
+ *
+ * @author Nitesh Kumar
+ */
 public class HttpUtils {
     private Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
+    /**
+     * Get header value from request
+     *
+     * @param header a valid {@link HttpHeaders}
+     * @return
+     */
     public static String getHeader(HttpHeaders header) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (requestAttributes instanceof ServletRequestAttributes) {

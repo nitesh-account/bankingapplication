@@ -9,6 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * TransactionController is used to perform deposit and withdraw operations.
+ *
+ * @author Nitesh Kumar
+ */
+
 @RestController
 @CrossOrigin
 @RequestMapping(value = {"/api"})

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * AccountRepository is used to get account related data from database
+ *
+ * @author Nitesh Kumar
+ */
+
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
 	Page<Account> findByCustomerId(String customerId, Pageable pageable);
