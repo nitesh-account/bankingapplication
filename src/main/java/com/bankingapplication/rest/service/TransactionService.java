@@ -46,7 +46,7 @@ public class TransactionService extends BaseService {
 
             String createdBy = HttpUtils.getHeader(HttpHeaders.USER_NAME);
 
-            Transaction transaction = new Transaction(createdBy, acct, TransactionType.DEPOSIT, amount);
+            Transaction transaction = new Transaction(createdBy, acct, transactionType, amount);
             Transaction savedTransaction = transactionRepository.save(transaction);
 
             setTransactionDTO(savedTransaction, accountNumber, transactionDTO, finalCustomer, acct, balanceAfterTransaction, amount);
