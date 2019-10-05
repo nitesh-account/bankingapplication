@@ -1,16 +1,18 @@
 package com.bankingapplication.rest.controller;
 
-import com.bankingapplication.rest.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bankingapplication.rest.dto.TransactionDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping(value = {"/api"})
-public class TransactionController {
+public class TransactionController extends BaseController{
 
-    @Autowired
-    TransactionService transactionService;
+    @PostMapping("/deposit/{amount}")
+    public ResponseEntity<TransactionDTO> deposit(@RequestParam String accountNumber,
+                                                  @RequestParam("amount") Double amount) throws Exception {
+        return transactionService.save(accountNumber, amount);
+    }
+
 }

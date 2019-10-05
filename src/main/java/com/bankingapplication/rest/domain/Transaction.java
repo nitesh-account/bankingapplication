@@ -44,6 +44,13 @@ public class Transaction extends BaseMaster implements Serializable {
     @Column(name="TRANSACTION_AMOUNT")
     private Double amount;
 
+    public Transaction(String createdBy, Account account, TransactionType transactionType, Double amount) {
+        super(createdBy);
+        this.account = account;
+        this.transactionType = transactionType;
+        this.amount = amount;
+    }
+
     public String getId() {
         return id;
     }

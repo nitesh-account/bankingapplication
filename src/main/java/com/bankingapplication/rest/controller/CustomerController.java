@@ -1,8 +1,6 @@
 package com.bankingapplication.rest.controller;
 
 import com.bankingapplication.rest.domain.Customer;
-import com.bankingapplication.rest.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -13,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping(value = {"/api"})
-public class CustomerController {
-
-    @Autowired
-    CustomerService customerService;
+public class CustomerController extends BaseController{
 
     @PostMapping(value = "/customers")
     @ResponseStatus(code = HttpStatus.CREATED)

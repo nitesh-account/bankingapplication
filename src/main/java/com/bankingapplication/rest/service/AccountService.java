@@ -45,7 +45,7 @@ public class AccountService {
     }
 
     public ResponseEntity<?> deleteAccount(String accountId) {
-        Optional<Account> account = accountRepository.findById(accountId);
+        Optional<Account> account = accountRepository.findByAccountNumber(accountId);
         if(account.isPresent()){
             Account acct = account.get();
             String customerId = acct.getCustomer().getId();
@@ -54,14 +54,14 @@ public class AccountService {
             }
         }
 
-        return accountRepository.findById(accountId).map(acct ->{
+        return accountRepository.findByAccountNumber(accountId).map(acct ->{
             accountRepository.delete(acct);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Account [accountId="+accountId+"] can't be found"));
     }
 
     public ResponseEntity<Account> updateAccount(String accountId, Account newAccount) {
-        Optional<Account> account = accountRepository.findById(accountId);
+        Optional<Account> account = accountRepository.findByAccountNumber(accountId);
         Customer customer = new Customer();
         if(account.isPresent()){
             Account acct = account.get();
@@ -71,7 +71,7 @@ public class AccountService {
             }
 
         Customer finalCustomer = customer;
-        return accountRepository.findById(accountId).map(acct ->{
+        return accountRepository.findByAccountNumber(accountId).map(acct ->{
             setNewAccount(newAccount, finalCustomer, acct);
             accountRepository.save(newAccount);
             return ResponseEntity.ok(newAccount);
@@ -88,7 +88,7 @@ public class AccountService {
     }
 
     public ResponseEntity<Account> closeAccount(String accountNumber) {
-        return accountRepository.findById(accountNumber).map(account ->{
+        return accountRepository.findByAccountNumber(accountNumber).map(account ->{
             account.setAccountStatus("Closed");
             account.setAccountNumber(accountNumber);
             account.setClosingDate(Instant.now().getEpochSecond());
@@ -114,11 +114,15 @@ public class AccountService {
 
         Customer finalCustomer = customer;
         return accountRepository.findByAccountNumber(accountNumber).map(acct ->{
-            accountSearchDTO.setCustomerId(finalCustomer.getId());
-            accountSearchDTO.setCustomerName(finalCustomer.getCustomerName());
-            accountSearchDTO.setAccountNumber(accountNumber);
-            accountSearchDTO.setAccountStatus(acct.getAccountStatus());
+            setAccountSearchDTO(accountNumber, accountSearchDTO, finalCustomer, acct);
             return ResponseEntity.ok(accountSearchDTO);
         }).orElseThrow(() -> new ResourceNotFoundException("Account [accountId="+accountNumber+"] can't be found"));
+    }
+
+    private void setAccountSearchDTO(String accountNumber, AccountSearchDTO accountSearchDTO, Customer finalCustomer, Account acct) {
+        accountSearchDTO.setCustomerId(finalCustomer.getId());
+        accountSearchDTO.setCustomerName(finalCustomer.getCustomerName());
+        accountSearchDTO.setAccountNumber(accountNumber);
+        accountSearchDTO.setAccountStatus(acct.getAccountStatus());
     }
 }

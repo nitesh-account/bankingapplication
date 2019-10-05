@@ -12,11 +12,9 @@ import java.util.Date;
 public class BaseMaster{
 
   @Column(name = "created_by")
-  @CreatedBy
   private String createdBy;
 
   @Column(name = "updated_by")
-  @CreatedBy
   private String updatedBy;
 
   @Column(name = "created_date", nullable = false, updatable = false)
@@ -24,6 +22,10 @@ public class BaseMaster{
 
   @Column(name = "updated_date")
   public Long updatedDate;
+
+  public BaseMaster(String createdBy) {
+    this.createdBy = createdBy;
+  }
 
   public String getCreatedBy() {
     return createdBy;
