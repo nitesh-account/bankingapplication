@@ -20,10 +20,10 @@ public class BaseMaster{
   private String updatedBy;
 
   @Column(name = "created_date", nullable = false, updatable = false)
-  public Date createdDate;
+  public Long createdDate;
 
   @Column(name = "updated_date")
-  public Date updatedDate;
+  public Long updatedDate;
 
   public String getCreatedBy() {
     return createdBy;

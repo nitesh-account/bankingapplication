@@ -1,11 +1,10 @@
 package com.bankingapplication.rest.utils;
 
-import java.util.Date;
+import java.time.Instant;
 
 public class DateAssistantUtils {
 
-  public static Date setDate() {
-    Date date = new Date();
-    return date;
+  public static Long setDate() {
+    return Instant.now().getEpochSecond();
   }
 }

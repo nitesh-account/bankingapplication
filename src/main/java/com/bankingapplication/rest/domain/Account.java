@@ -31,15 +31,15 @@ public class Account extends BaseMaster implements Serializable {
 	private String accountNumber;
 
 	@Column(name="ACCOUNT_TYPE")
+	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
 
 	@Column(name="ACCOUNT_STATUS")
 	private String accountStatus;
 
 	@Column(name="BALANCE")
-	@NotNull
 	@Min(0)
-	private Double balance;
+	private Double balance = Double.valueOf(0);
 	
 	@Column(name="OPENING_DATE")
 	private Long openingDate;
@@ -50,7 +50,6 @@ public class Account extends BaseMaster implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Customer customer;
 
 	public String getAccountNumber() {
