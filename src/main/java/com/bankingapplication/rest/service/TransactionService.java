@@ -9,6 +9,8 @@ import com.bankingapplication.rest.enums.TransactionType;
 import com.bankingapplication.rest.exception.LowBalanceException;
 import com.bankingapplication.rest.exception.ResourceNotFoundException;
 import com.bankingapplication.rest.utils.HttpUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 @Service
 public class TransactionService extends BaseService {
+    private Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
     @Transactional
     public ResponseEntity<TransactionDTO> save(String accountNumber, Double amount, TransactionType transactionType) {

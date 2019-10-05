@@ -2,6 +2,8 @@ package com.bankingapplication.rest.domain.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.bankingapplication.rest.utils.DateAssistantUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;

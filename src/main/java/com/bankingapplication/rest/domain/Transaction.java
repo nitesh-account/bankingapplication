@@ -14,6 +14,8 @@ import com.bankingapplication.rest.domain.base.BaseMaster;
 import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
 import com.bankingapplication.rest.enums.TransactionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Table(name="TRANSACTION")

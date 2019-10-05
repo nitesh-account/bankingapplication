@@ -1,6 +1,10 @@
 package com.bankingapplication.rest.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class AccountSearchDTO {
+    private Logger logger = LoggerFactory.getLogger(AccountSearchDTO.class);
     private String customerName;
     private String customerId;
     private String accountStatus;

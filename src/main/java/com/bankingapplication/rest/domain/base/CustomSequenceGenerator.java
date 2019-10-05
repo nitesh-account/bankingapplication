@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.bankingapplication.rest.domain.base;
 
 import java.io.Serializable;
@@ -14,12 +11,15 @@ import org.hibernate.internal.util.config.ConfigurationHelper;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.type.LongType;
 import org.hibernate.type.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Nitesh
  *
  */
 public class CustomSequenceGenerator extends SequenceStyleGenerator {
+	private Logger logger = LoggerFactory.getLogger(CustomSequenceGenerator.class);
 		 
 	    public static final String VALUE_PREFIX_PARAMETER = "valuePrefix";
 	    public static final String VALUE_PREFIX_DEFAULT = "";

@@ -1,5 +1,7 @@
 package com.bankingapplication.rest.swagger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ParameterBuilder;
@@ -21,6 +23,7 @@ import java.util.stream.Stream;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+    private Logger logger = LoggerFactory.getLogger(SwaggerConfig.class);
 
     @Bean
     public Docket BankingApplicationApi() {
@@ -42,10 +45,10 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Banking application API",
-                "TODO",
+                "Banking application API's used for creating, inquire, update and delete operations for customer and account. Also, provides deposit and withdrawal operations.",
                 "1.0",
                 "Terms of service",
-                new Contact("Nitesh Kumar", "linkedinlink", "nitesh04singh@gmail.com"),
+                new Contact("Nitesh Kumar", "https://engineeernitesh.blogspot.com/", "nitesh04singh@gmail.com"),
                 "Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
     }
 }

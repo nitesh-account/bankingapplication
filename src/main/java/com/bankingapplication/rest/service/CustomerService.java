@@ -3,9 +3,9 @@ package com.bankingapplication.rest.service;
 import com.bankingapplication.rest.domain.Customer;
 import com.bankingapplication.rest.enums.HttpHeaders;
 import com.bankingapplication.rest.exception.ResourceNotFoundException;
-import com.bankingapplication.rest.repository.CustomerRepository;
 import com.bankingapplication.rest.utils.HttpUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class CustomerService {
-    @Autowired CustomerRepository customerRepository;
+public class CustomerService extends BaseService{
+    private Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     public Customer save(Customer customer) {
         String createdBy = HttpUtils.getHeader(HttpHeaders.USER_NAME);

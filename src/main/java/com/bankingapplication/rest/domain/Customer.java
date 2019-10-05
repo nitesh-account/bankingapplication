@@ -15,11 +15,12 @@ import org.hibernate.annotations.Parameter;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
 import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Table(name = "CUSTOMER")
 @Entity
 public class Customer extends BaseMaster implements Serializable {
-
     private static final long serialVersionUID = -6759774343110776659L;
 
     @Id

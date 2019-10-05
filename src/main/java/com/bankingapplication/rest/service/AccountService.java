@@ -8,6 +8,8 @@ import com.bankingapplication.rest.exception.ResourceNotFoundException;
 import com.bankingapplication.rest.repository.AccountRepository;
 import com.bankingapplication.rest.repository.CustomerRepository;
 import com.bankingapplication.rest.utils.HttpUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +21,8 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Service
-public class AccountService {
-    @Autowired
-    AccountRepository accountRepository;
-    @Autowired
-    CustomerRepository customerRepository;
-
+public class AccountService extends BaseService{
+    private Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     public Account save(Account account) {
         String customerId = account.getCustomer().getId();

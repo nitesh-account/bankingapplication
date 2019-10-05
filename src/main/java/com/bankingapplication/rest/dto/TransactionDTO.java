@@ -1,6 +1,11 @@
 package com.bankingapplication.rest.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TransactionDTO {
+    private Logger logger = LoggerFactory.getLogger(TransactionDTO.class);
+
     private String transactionId;
     private String accountNumber;
     private Double transactionAmount;

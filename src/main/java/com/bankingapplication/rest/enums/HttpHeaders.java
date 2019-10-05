@@ -15,7 +15,7 @@ public enum HttpHeaders {
 		return value;
 	}
 
-private HttpHeaders(String value) {
+	private HttpHeaders(String value) {
 	this.value = value;
 }
 }
