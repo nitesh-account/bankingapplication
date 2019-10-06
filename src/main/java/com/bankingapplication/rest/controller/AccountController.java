@@ -43,22 +43,22 @@ public class AccountController extends BaseController{
 		return accountService.getAll(pageable);
 	}
 
-	@DeleteMapping(value = "/accounts/{accountId}")
-	@ApiOperation(value = "Delete account based on account id")
-	public ResponseEntity<?> deleteAccount(@PathVariable String accountId){
-		return accountService.deleteAccount(accountId);
+	@DeleteMapping(value = "/accounts/{accountNumber}")
+	@ApiOperation(value = "Delete account based on account number")
+	public ResponseEntity<?> deleteAccount(@PathVariable String accountNumber){
+		return accountService.deleteAccount(accountNumber);
 	}
 	
-	@PutMapping(value = "/accounts/{accountId}")
-	@ApiOperation(value = "Update account based on account id")
-	public ResponseEntity<Account> updateAccount(@PathVariable String accountId, @RequestBody Account newAccount){
-		return accountService.updateAccount(accountId,newAccount);
+	@PutMapping(value = "/accounts/{accountNumber}")
+	@ApiOperation(value = "Update account based on account number")
+	public ResponseEntity<Account> updateAccount(@PathVariable String accountNumber, @RequestBody Account newAccount){
+		return accountService.updateAccount(accountNumber,newAccount);
 	}
 
-	@PatchMapping(value = "/closeAccount/{accountId}")
-	@ApiOperation(value = "Close account based on account id")
-	public ResponseEntity<Account> closeAccount(@PathVariable String accountId){
-		return accountService.closeAccount(accountId);
+	@PatchMapping(value = "/closeAccount/{accountNumber}")
+	@ApiOperation(value = "Close account based on account number")
+	public ResponseEntity<Account> closeAccount(@PathVariable String accountNumber){
+		return accountService.closeAccount(accountNumber);
 	}
 
 }

@@ -32,7 +32,7 @@ public class CustomerController extends BaseController{
     }
 
     @GetMapping(value = "/customers")
-    @ApiOperation(value = "Get all accounts")
+    @ApiOperation(value = "Get all customers")
     public Page<Customer> all(Pageable pageable) {
         return customerService.findAll(pageable);
     }

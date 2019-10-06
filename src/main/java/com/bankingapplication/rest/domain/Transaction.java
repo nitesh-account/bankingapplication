@@ -1,7 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import com.bankingapplication.rest.domain.base.CustomSeqGenerator;
 import com.bankingapplication.rest.enums.TransactionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,11 +27,11 @@ public class Transaction extends BaseMaster implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
     @GenericGenerator(
         name = "transaction_seq", 
-        strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator", 
+        strategy = "com.bankingapplication.rest.domain.base.CustomSeqGenerator",
         parameters = {
-            @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
-            @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "T_"),
-            @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+            @Parameter(name = CustomSeqGenerator.INCREMENT_PARAM, value = "50"),
+            @Parameter(name = CustomSeqGenerator.VALUE_PREFIX_PARAMETER, value = "T_"),
+            @Parameter(name = CustomSeqGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
     private String id;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

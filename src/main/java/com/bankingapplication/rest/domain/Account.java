@@ -1,7 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import com.bankingapplication.rest.domain.base.CustomSeqGenerator;
 import com.bankingapplication.rest.enums.AccountType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -27,11 +27,11 @@ public class Account extends BaseMaster implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
 	@GenericGenerator(
 			name = "account_seq",
-			strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator",
+			strategy = "com.bankingapplication.rest.domain.base.CustomSeqGenerator",
 			parameters = {
-					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
-					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "A_"),
-					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
+					@org.hibernate.annotations.Parameter(name = CustomSeqGenerator.INCREMENT_PARAM, value = "50"),
+					@org.hibernate.annotations.Parameter(name = CustomSeqGenerator.VALUE_PREFIX_PARAMETER, value = "A_"),
+					@org.hibernate.annotations.Parameter(name = CustomSeqGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
 	private String accountNumber;
 
 	@Column(name="ACCOUNT_TYPE", nullable = false)

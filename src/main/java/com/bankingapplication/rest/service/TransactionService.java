@@ -6,6 +6,7 @@ import com.bankingapplication.rest.domain.Transaction;
 import com.bankingapplication.rest.domain.dtos.TransactionDTO;
 import com.bankingapplication.rest.enums.HttpHeaders;
 import com.bankingapplication.rest.enums.TransactionType;
+import com.bankingapplication.rest.exception.AccountCloseException;
 import com.bankingapplication.rest.exception.LowBalanceException;
 import com.bankingapplication.rest.exception.ResourceNotFoundException;
 import com.bankingapplication.rest.utils.HttpUtils;
@@ -45,6 +46,8 @@ public class TransactionService extends BaseService {
 
         Customer finalCustomer = customer;
         return accountRepository.findByAccountNumber(accountNumber).map(acct -> {
+            if(acct.getAccountStatus().equalsIgnoreCase("Closed"))
+                throw new AccountCloseException("Account [Account number=" +acct.getAccountNumber()+ "] is closed");
             Double currentBalance = acct.getBalance();
             Double balanceAfterTransaction = 0.0;
             if (transactionType.equals(TransactionType.DEPOSIT)) {

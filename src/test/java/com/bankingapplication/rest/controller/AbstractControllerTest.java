@@ -3,6 +3,7 @@ package com.bankingapplication.rest.controller;
 import com.bankingapplication.rest.service.AccountService;
 import com.bankingapplication.rest.service.CustomerService;
 import com.bankingapplication.rest.service.TransactionService;
+import com.bankingapplication.rest.service.audittrail.CustomerAuditTrailService;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -28,9 +29,12 @@ public abstract class AbstractControllerTest {
 	@MockBean
 	protected TransactionService transactionService;
 
+	@MockBean
+	protected CustomerAuditTrailService customerAuditTrailService;
+
 	@Before
 	public void setUp() {
-		Mockito.reset(customerService, accountService, transactionService);
+		Mockito.reset(customerService, accountService, transactionService, customerAuditTrailService);
 	}
 
 }

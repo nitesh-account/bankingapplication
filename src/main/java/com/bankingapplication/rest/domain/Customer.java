@@ -1,7 +1,7 @@
 package com.bankingapplication.rest.domain;
 
 import com.bankingapplication.rest.domain.base.BaseMaster;
-import com.bankingapplication.rest.domain.base.CustomSequenceGenerator;
+import com.bankingapplication.rest.domain.base.CustomSeqGenerator;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -25,11 +25,11 @@ public class Customer extends BaseMaster implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
     @GenericGenerator(
             name = "customer_seq",
-            strategy = "com.bankingapplication.rest.domain.base.CustomSequenceGenerator",
+            strategy = "com.bankingapplication.rest.domain.base.CustomSeqGenerator",
             parameters = {
-                    @Parameter(name = CustomSequenceGenerator.INCREMENT_PARAM, value = "50"),
-                    @Parameter(name = CustomSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "C_"),
-                    @Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
+                    @Parameter(name = CustomSeqGenerator.INCREMENT_PARAM, value = "50"),
+                    @Parameter(name = CustomSeqGenerator.VALUE_PREFIX_PARAMETER, value = "C_"),
+                    @Parameter(name = CustomSeqGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
     private String id;
 
     @Column(name = "NAME")
