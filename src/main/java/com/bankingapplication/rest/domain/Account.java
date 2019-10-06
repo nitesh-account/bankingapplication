@@ -34,7 +34,7 @@ public class Account extends BaseMaster implements Serializable {
 					@org.hibernate.annotations.Parameter(name = CustomSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
 	private String accountNumber;
 
-	@Column(name="ACCOUNT_TYPE")
+	@Column(name="ACCOUNT_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
 
