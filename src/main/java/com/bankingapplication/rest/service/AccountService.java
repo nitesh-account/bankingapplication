@@ -2,15 +2,12 @@ package com.bankingapplication.rest.service;
 
 import com.bankingapplication.rest.domain.Account;
 import com.bankingapplication.rest.domain.Customer;
-import com.bankingapplication.rest.dto.AccountSearchDTO;
+import com.bankingapplication.rest.domain.dtos.AccountSearchDTO;
 import com.bankingapplication.rest.enums.HttpHeaders;
 import com.bankingapplication.rest.exception.ResourceNotFoundException;
-import com.bankingapplication.rest.repository.AccountRepository;
-import com.bankingapplication.rest.repository.CustomerRepository;
 import com.bankingapplication.rest.utils.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

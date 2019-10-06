@@ -3,7 +3,7 @@ package com.bankingapplication.rest.service;
 import com.bankingapplication.rest.domain.Account;
 import com.bankingapplication.rest.domain.Customer;
 import com.bankingapplication.rest.domain.Transaction;
-import com.bankingapplication.rest.dto.TransactionDTO;
+import com.bankingapplication.rest.domain.dtos.TransactionDTO;
 import com.bankingapplication.rest.enums.HttpHeaders;
 import com.bankingapplication.rest.enums.TransactionType;
 import com.bankingapplication.rest.exception.LowBalanceException;
@@ -64,7 +64,7 @@ public class TransactionService extends BaseService {
 
             setTransactionDTO(savedTransaction, accountNumber, transactionDTO, finalCustomer, acct, balanceAfterTransaction, amount);
             return ResponseEntity.ok(transactionDTO);
-        }).orElseThrow(() -> new ResourceNotFoundException("Account [accountId=" + accountNumber + "] can't be found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("Account [accountNumber=" + accountNumber + "] can't be found"));
     }
 
     /**

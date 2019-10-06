@@ -47,10 +47,12 @@ public class CustomerService extends BaseService{
     }
 
     /**
-     * Find customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     * Find customer based on customer id
      *
      * @param customerId unique customer id
      * @return {@link Customer} object
+     *
+     * @throws if customer id is not found than throw {@link ResourceNotFoundException} exception.
      */
     public Customer findByCustomerId(String customerId) {
         return customerRepository.findById(customerId)
@@ -58,10 +60,12 @@ public class CustomerService extends BaseService{
     }
 
     /**
-     * Delete customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     * Delete customer based on customer id
      *
      * @param customerId a unique customer id
      * @return
+     *
+     * @throws if customer id is not found than throw {@link ResourceNotFoundException} exception.
      */
     public ResponseEntity<?> deleteCustomer(String customerId) {
         return customerRepository.findById(customerId).map(customer -> {
@@ -72,11 +76,13 @@ public class CustomerService extends BaseService{
     }
 
     /**
-     * Update customer based on customer id, if customer id is not found than throw {@link ResourceNotFoundException} exception.
+     * Update customer based on customer id
      *
      * @param customerId a unique customer id
      * @param newCustomer a valid {@link Customer} object
      * @return {@link Customer} object
+     *
+     * @throws if customer id is not found than throw {@link ResourceNotFoundException} exception.
      */
     public ResponseEntity<Customer> updateCustomer(String customerId, Customer newCustomer) {
         return customerRepository.findById(customerId).map(customer -> {

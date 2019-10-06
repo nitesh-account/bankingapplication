@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -32,6 +33,7 @@ public class Customer extends BaseMaster implements Serializable {
     private String id;
 
     @Column(name = "NAME")
+    @NotNull
     private String customerName;
 
     @Column(name = "DATE_OF_BIRTH", nullable = true)

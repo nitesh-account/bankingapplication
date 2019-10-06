@@ -1,6 +1,6 @@
 package com.bankingapplication.rest.controller;
 
-import com.bankingapplication.rest.dto.TransactionDTO;
+import com.bankingapplication.rest.domain.dtos.TransactionDTO;
 import com.bankingapplication.rest.enums.TransactionType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
